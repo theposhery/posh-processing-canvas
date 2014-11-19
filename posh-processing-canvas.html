@@ -1,0 +1,69 @@
+<link rel="import" href="../polymer/polymer.html">
+<script src="processing.min.js"></script>
+
+<!--
+Element providing solution to no problem in particular.
+
+##### Example
+
+    <posh-processing-canvas></posh-processing-canvas>
+
+@element posh-processing-canvas
+@blurb Element providing solution to no problem in particular.
+@status alpha
+@homepage http://polymerlabs.github.io/posh-processing-canvas
+-->
+<polymer-element name="posh-processing-canvas" attributes="notitle author">
+
+  <template>
+
+    <link rel="stylesheet" href="posh-processing-canvas.css" />
+    <content>
+      <canvas id="processingCanvas"></canvas>
+    </content>
+
+  </template>
+
+  <script>
+
+    Polymer({
+
+      ready: function() {},
+
+      /**
+       * run a processing sketch
+       *
+       * @method runSketch
+       * @param {Function} sketch
+       * @param {Boolean} isPDE
+       * @return {Object} canvas
+       */
+      runSketch: function(sketch, isPDE) {
+        if (isPDE) {
+          sketch = eval(Processing.compile(sketch).sourceCode);
+        }
+        this.processingInstance = new Processing(this.$.processingCanvas, sketch);
+        return this.$.processingCanvas;
+      },
+
+      /**
+       * load a processing sketch
+       *
+       * @method runSketch
+       * @param {Function} sketch
+       * @return {Object} canvas
+       */
+      loadSketch: function(sketch) {
+        var fs = require('fs');
+        if (!fs) {
+          throw new Error('This method uses Node.js functionality, and you are not running within Node.js');
+        }
+        var skttxt = fs.readFileSync(sketch, 'utf8');
+        return this.runSketch(skttxt, true);
+      }
+
+    });
+
+  </script>
+
+</polymer-element>

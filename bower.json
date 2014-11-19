@@ -1,0 +1,16 @@
+{
+  "name": "posh-processing-canvas",
+  "version": "0.0.0",
+  "keywords": [
+    "seed",
+    "polymer",
+    "web-components"
+  ],
+  "main": "posh-processing-canvas.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^0.4.0"
+  },
+  "devDependencies": {
+    "polymer-test-tools": "Polymer/polymer-test-tools#^0.4.0"
+  }
+}

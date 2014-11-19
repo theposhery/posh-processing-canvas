@@ -1,0 +1,24 @@
+<!doctype html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0, user-scalable=yes">
+  <title>posh-processing-canvas Demo</title>
+
+  <script src="../platform/platform.js"></script>
+  <link rel="import" href="posh-processing-canvas.html">
+
+</head>
+<body unresolved>
+
+  <p>An `posh-processing-canvas` looks like this:</p>
+
+  <posh-processing-canvas id="proc"></posh-processing-canvas>
+
+  <script>
+    document.addEventListener('polymer-ready', function(event) {
+      var prc = document.getElementById('proc');
+      prc.loadSketch('app/components/posh-processing-canvas/test/samplesketch.pde');
+    });
+  </script>
+</body>
+</html>
