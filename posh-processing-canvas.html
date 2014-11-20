@@ -60,6 +60,25 @@ Element providing solution to no problem in particular.
         }
         var skttxt = fs.readFileSync(sketch, 'utf8');
         return this.runSketch(skttxt, true);
+      },
+
+      /**
+       * convert sketch to JS
+       *
+       * @method convertToJS
+       * @param {String} PDE sketch path
+       * @param {String} JS output path
+       * @return {String} JS sketch
+       */
+      convertSketch: function(src, dest) {
+        var fs = require('fs');
+        if (!fs) {
+          throw new Error('This method uses Node.js functionality, and you are not running within Node.js');
+        }
+        var sketch = fs.readFileSync(src, 'utf8');
+        sketch = 'module.exports = ' + Processing.compile(sketch).sourceCode;
+        fs.writeFileSync(dest, sketch, 'utf8');
+        return sketch;
       }
 
     });
