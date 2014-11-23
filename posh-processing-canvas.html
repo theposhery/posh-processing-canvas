@@ -31,6 +31,25 @@ Element providing solution to no problem in particular.
       ready: function() {},
 
       /**
+       * create a sketch based on composite functions
+       *
+       * @method createSketch
+       * @param {Object} key/value function maps where keys are the names, and values are the functions
+       * @return sketch
+       */
+      createSketch: function(fnMap) {
+        var sketch = function($p) {
+          for (var c in fnMap) {
+            $p[c] = fnMap[c];
+            if (typeof fnMap[c] == "function" ) {
+              fnMap[c] = fnMap[c].bind($p);
+            }
+          }
+        };
+        return sketch;
+      },
+
+      /**
        * run a processing sketch
        *
        * @method runSketch
