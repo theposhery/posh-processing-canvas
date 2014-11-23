@@ -25,10 +25,26 @@ Element providing solution to no problem in particular.
   </template>
 
   <script>
-
     Polymer({
 
-      ready: function() {},
+      domReady: function() {
+        this.onResize();
+      },
+
+      ready: function() {
+      },
+
+      /**
+       * update canvas dimensions when resized
+       *
+       * @method: onResize
+       */
+      onResize: function() {
+        this.width = window.getComputedStyle(this).width;
+        this.height = window.getComputedStyle(this).height;
+        this.$.processingCanvas.setAttribute("width", this.width);
+        this.$.processingCanvas.setAttribute("height", this.height);
+      },
 
       /**
        * create a sketch based on composite functions

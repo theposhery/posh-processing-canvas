@@ -3,3 +3,7 @@
   height: 100vm;
   position: absolute;
 }
+
+#processingCanvas {
+  position: absolute;
+}
